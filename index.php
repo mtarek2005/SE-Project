@@ -1,1 +1,1 @@
-<!-- test comment 2 blablabla -->
+<!-- Lorem ipsum -->
