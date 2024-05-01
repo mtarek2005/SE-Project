@@ -4,6 +4,6 @@ $username = 'root';
 $password = '';
 $dbname = 'se-project-z';
 
-$db = new mysqli('localhost' , $username , $password , $dbname);
+$main_db = new mysqli('localhost' , $username , $password , $dbname);
 
 ?>
