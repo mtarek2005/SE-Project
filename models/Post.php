@@ -15,6 +15,30 @@ class Post {
     public string $image  ; // : string
     public array $liked_by  ; // : Like[]
     public array $reposts  ; // : Repost[]
+    static function PostTypeEnumFromString(string $str){
+        switch($str) {
+            case 'main':
+                return PostTypeEnum::main;
+            case 'reply':
+                return PostTypeEnum::reply;
+            case 'quote':
+                return PostTypeEnum::quote;
+            default:
+                return null;
+        }
+    }
+    static function PostTypeEnumToString(PostTypeEnum $enum){
+        switch ($enum) {
+            case PostTypeEnum::main:
+                return 'main';
+            case PostTypeEnum::reply:
+                return 'reply';
+            case PostTypeEnum::quote:
+                return 'quote';
+            default:
+                return null;
+        }
+    }
 }
 class Repost{
     public User $poster; // : User
