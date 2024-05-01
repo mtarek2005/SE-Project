@@ -11,18 +11,18 @@ class Post {
     public Post $post_replied_to ; // : Post
     public PostTypeEnum $post_type ; // : PostTypeEnum
     public string $content ; // : string
-    public $date ; // : DateTime
+    public DateTime $date ; // : DateTime
     public string $image  ; // : string
     public array $liked_by  ; // : Like[]
     public array $reposts  ; // : Repost[]
 }
 class Repost{
-    public $poster; // : User
-    public $date; // : DateTime
-    public $post; // : Post
+    public User $poster; // : User
+    public DateTime $date; // : DateTime
+    public Post $post; // : Post
 }
 class Like{
-    public $user; // : User
-    public $date; // : DateTime
+    public User $user; // : User
+    public DateTime $date; // : DateTime
 }
 ?>

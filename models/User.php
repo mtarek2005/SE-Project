@@ -4,6 +4,10 @@ enum RoleEnum{
     case regular;
     case moderator;
 }
+class Duration{
+    public DateTime $start;
+    public DateInterval $end;
+}
 class User{
     public int $UUID; // : int
     public string $username; // : string
@@ -11,9 +15,9 @@ class User{
     public string $display_name; // : string
     public string $about; // : string
     public string $profile_pic; // : string
-    public $join_date; // : date
-    public $mute_duration; // : duration
-    public $ban_duration; // : durtion
+    public DateTime $join_date; // : date
+    public Duration $mute_duration; // : duration
+    public Duration $ban_duration; // : durtion
     public RoleEnum $role; // : RoleEnum
     public array $following; // : Follow[]
     public array $muted; // : User[]
@@ -22,10 +26,10 @@ class User{
 }
 class Bookmark{
     public Post $post; // : Post
-    public $date; // : DateTime
+    public DateTime $date; // : DateTime
 }
 class Follow{
     public User $followed; // : User
-    public $date; // : DateTime
+    public DateTime $date; // : DateTime
 }
 ?>
