@@ -2,31 +2,31 @@
 require_once "./include.php";
 class CurrentUserManager{
     public $user; // : User
-    function login($db/* : mysqli*/,$username,$pass){} // : void
-    function register($db/* : mysqli*/,$username,$pass,$name){} // : void
-    function follow($db/* : mysqli*/,$user){} // : void
-    function mute($db/* : mysqli*/,$user){} // : void
-    function block($db/* : mysqli*/,$user){} // : void
-    function bookmark($db/* : mysqli*/,$post){} // : void
-    function update_name($db/* : mysqli*/,$name){} // : void
-    function update_about($db/* : mysqli*/,$about){} // : void
-    function update_username($db/* : mysqli*/,$username){} // : void
-    function update_pic($db/* : mysqli*/,$pic){} // : void
-    function like($db/* : mysqli*/,$post){} // : void
-    function repost($db/* : mysqli*/,$post){} // : void
-    function post($db/* : mysqli*/,$post){} // : void
-    function reply($db/* : mysqli*/,$post,$reply){} // : void
-    function unfollow($db/* : mysqli*/,$user){} // : void
-    function unmute($db/* : mysqli*/,$user){} // : void
-    function unblock($db/* : mysqli*/,$user){} // : void
-    function delete_post($db/* : mysqli*/,$post){} // : void
-    function edit_post($db/* : mysqli*/,$post){} // : void
+    function login(mysqli $db,$username,$pass){} // : void
+    function register(mysqli $db,$username,$pass,$name){} // : void
+    function follow(mysqli $db,$user){} // : void
+    function mute(mysqli $db,$user){} // : void
+    function block(mysqli $db,$user){} // : void
+    function bookmark(mysqli $db,$post){} // : void
+    function update_name(mysqli $db,$name){} // : void
+    function update_about(mysqli $db,$about){} // : void
+    function update_username(mysqli $db,$username){} // : void
+    function update_pic(mysqli $db,$pic){} // : void
+    function like(mysqli $db,$post){} // : void
+    function repost(mysqli $db,$post){} // : void
+    function post(mysqli $db,$post){} // : void
+    function reply(mysqli $db,$post,$reply){} // : void
+    function unfollow(mysqli $db,$user){} // : void
+    function unmute(mysqli $db,$user){} // : void
+    function unblock(mysqli $db,$user){} // : void
+    function delete_post(mysqli $db,$post){} // : void
+    function edit_post(mysqli $db,$post){} // : void
     function logout(){} // : void
 }
 class CurrentModManager extends CurrentUserManager{
-    function global_mute($db/* : mysqli*/,$user){} // : void
-    function ban($db/* : mysqli*/,$user){} // : void
-    function delete_post($db/* : mysqli*/,$post){} // : void
+    function global_mute(mysqli $db,$user){} // : void
+    function ban(mysqli $db,$user){} // : void
+    function delete_post(mysqli $db,$post){} // : void
 
 }
 ?>
