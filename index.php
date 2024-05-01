@@ -1,1 +1,5 @@
-<!-- Lorem ipsum.... lorem ipsum -->
+<!-- Lorem ipsaum -->
+<?php
+require_once "./include.php";
+echo "hellooo";
+?>
