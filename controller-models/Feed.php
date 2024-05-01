@@ -9,7 +9,7 @@ abstract class Feed {
 class UserFeed extends Feed {
     public User $user;
     function gatherFeed(mysqli $db){
-        $result = $db->query("SELECT * FROM Posts WHERE Poster = ?", $this->user->UUID);
+        $result = $db->query("SELECT * FROM Post WHERE Poster = ".$this->user->UUID);
         $posts = [];
         while ($row = $result->fetch_assoc()){
             $post = new Post;
