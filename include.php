@@ -7,4 +7,5 @@ require_once "./controller-models/Chat.php";
 require_once "./controller-models/Feed.php";
 require_once "./controller-models/Notifications.php";
 require_once "./controller-models/UserList.php";
+require_once "./views/connect_db.php";
 ?>
