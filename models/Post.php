@@ -1,14 +1,20 @@
 <?php
+require_once "./include.php";
+enum PostTypeEnum{
+    case main;
+    case reply;
+    case quote;
+}
 class Post {
-    public $post_id; // : int
-    public $poster ; // : User
-    public $post_replied_to ; // : Post
-    public $post_type ; // : PostTypeEnum
-    public $content ; // : string
+    public int $post_id; // : int
+    public User $poster ; // : User
+    public Post $post_replied_to ; // : Post
+    public PostTypeEnum $post_type ; // : PostTypeEnum
+    public string $content ; // : string
     public $date ; // : DateTime
-    public $image  ; // : string
-    public $liked_by  ; // : Like[]
-    public $reposts  ; // : Repost[]
+    public string $image  ; // : string
+    public array $liked_by  ; // : Like[]
+    public array $reposts  ; // : Repost[]
 }
 class Repost{
     public $poster; // : User

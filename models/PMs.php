@@ -1,10 +1,11 @@
 <?php
+require_once "./include.php";
 class PMs{
-public $message_id; // : int
-public $from ; // : User
-public $to ; // : User
-public $content ; // : string
-public $date ; // : DateTime
-public $reaction ; // : string
+    public int $message_id; // : int
+    public User $from ; // : User
+    public User $to ; // : User
+    public string $content ; // : string
+    public $date ; // : DateTime
+    public string $reaction ; // : string
 }
 ?>
