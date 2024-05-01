@@ -5,7 +5,7 @@ class Chat {
     public User $from;
     public User $to;
     function gatherFeed(mysqli $db){}
-    function send(mysqli $db, string $content)
-    function react(mysqli $db, PM $pm, string $reaction)
+    function send(mysqli $db, string $content){}
+    function react(mysqli $db, PMs $pm, string $reaction){}
 }
 ?>
