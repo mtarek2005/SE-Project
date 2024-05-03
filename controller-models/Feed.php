@@ -12,13 +12,13 @@ class UserFeed extends Feed {
         $stmt = $db->prepare("SELECT * FROM Post WHERE Poster = ?");
         $stmt->bind_param('i', $this->user->UUID);
         $stmt->execute();
-        $result = $stmt->get_result(); // todo
+        $result = $stmt->get_result(); 
         if(!$result){echo "errooor: ".$db -> error."\n";}
         $posts = [];
         while ($row = $result->fetch_assoc()){
             print_r($row);
             $post_replied_to=null;
-            if(!is_null($row["Post_replied_to"])){
+            if(!is_null($row["Post_replied_to"])){//todo
                 $post_replied_to=new Post;
             }
             $post = Post::CreateFromArr($row,$this->user,$post_replied_to);
@@ -33,13 +33,13 @@ class UserFeed extends Feed {
         if(!$result){echo "errooor: ".$db -> error."\n";}
         $reposts = [];
         while ($row = $result->fetch_assoc()){
-            $repost = Repost::CreateFromArr($row, $this->user, new Post); //todo 
+            $repost = Repost::CreateFromArr($row, $this->user, new Post); 
             
             $reposts[] = $repost;
             print_r($row);
             print_r($repost);
         }
-        $this->posts = $reposts;
+        $this->reposts = $reposts;
     } 
 }
 class FollowingFeed extends Feed {
