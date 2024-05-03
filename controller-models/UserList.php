@@ -20,8 +20,8 @@ class LikesList extends UserList {
 enum BLTypeEnum {
     case block;
     case mute; 
-    function gatherList(mysqli $db){}
 }
+// remember: blocks AND mutes
 class BlockList extends UserList {
     public BLTypeEnum $type;
     function gatherList(mysqli $db){}
