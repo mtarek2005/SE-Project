@@ -6,6 +6,6 @@ class PMs{
     public User $to ; // : User
     public string $content ; // : string
     public DateTime $date ; // : DateTime
-    public string $reaction ; // : string
+    public string|null $reaction ; // : string
 }
 ?>

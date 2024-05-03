@@ -13,6 +13,7 @@ class UserFeed extends Feed {
         if(!$result){echo "errooor: ".$db -> error."\n";}
         $posts = [];
         while ($row = $result->fetch_assoc()){
+            print_r($row);
             $post = new Post;
             $post->post_id = $row["PostID"];
             $post->poster = $this->user;
@@ -20,9 +21,9 @@ class UserFeed extends Feed {
             $post->post_type = Post::PostTypeEnumFromString($row["Post_type"]);
             $post->content = $row["Content"];
             //$post->date = $row["Post_date"];
-            //$post->image = $row["Image"];
+            $post->image = $row["Image"];
+            print_r($post);
             $posts[] = $post;
-            var_dump($row);
         }
         $this->posts = $posts;
         $result = $db->query("SELECT * FROM Reposts WHERE User = 0");

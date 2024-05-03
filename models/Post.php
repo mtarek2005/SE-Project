@@ -8,11 +8,11 @@ enum PostTypeEnum{
 class Post {
     public int $post_id; // : int
     public User $poster ; // : User
-    public Post $post_replied_to ; // : Post
+    public Post|null $post_replied_to ; // : Post
     public PostTypeEnum $post_type ; // : PostTypeEnum
     public string $content ; // : string
     public DateTime $date ; // : DateTime
-    public string $image  ; // : string
+    public string|null $image  ; // : string
     public array $liked_by  ; // : Like[]
     public array $reposts  ; // : Repost[]
     static function PostTypeEnumFromString(string $str){

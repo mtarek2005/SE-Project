@@ -14,10 +14,10 @@ class User{
     public string $hashed_password; // : string
     public string $display_name; // : string
     public string $about; // : string
-    public string $profile_pic; // : string
+    public string|null $profile_pic; // : string
     public DateTime $join_date; // : date
-    public Duration $mute_duration; // : duration
-    public Duration $ban_duration; // : durtion
+    public DateTime|null $mute_duration; // : duration
+    public DateTime|null $ban_duration; // : durtion
     public RoleEnum $role; // : RoleEnum
     public array $following; // : Follow[]
     public array $muted; // : User[]
