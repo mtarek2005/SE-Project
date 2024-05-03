@@ -48,8 +48,8 @@ class User{
         $user->about = $row["About"];
         $user->profile_pic = $row["Profile_pic"];
         $user->join_date = DateTime::createFromFormat("Y-m-d", $row["Join_date"]);
-        $user->mute_duration = DateTime::createFromFormat("Y-m-d G:i:s", $row["Mute_to"]);
-        $user->ban_duration = DateTime::createFromFormat("Y-m-d G:i:s", $row["Ban_to"]);
+        $user->mute_duration = is_null($row["Mute_to"]) ? null : DateTime::createFromFormat("Y-m-d G:i:s", $row["Mute_to"]);
+        $user->ban_duration = is_null($row["Ban_to"]) ? null : DateTime::createFromFormat("Y-m-d G:i:s", $row["Ban_to"]);
         $user->role = User::RoleEnumFromString($row["Role"]);
         return $user;
     }
