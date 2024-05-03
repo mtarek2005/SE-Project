@@ -4,10 +4,6 @@ enum RoleEnum{
     case regular;
     case moderator;
 }
-class Duration{
-    public DateTime $start;
-    public DateInterval $end;
-}
 class User{
     public int $UUID; // : int
     public string $username; // : string

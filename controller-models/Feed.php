@@ -20,7 +20,7 @@ class UserFeed extends Feed {
             //$post->post_replied_to = $row["Post_replied_to"];
             $post->post_type = Post::PostTypeEnumFromString($row["Post_type"]);
             $post->content = $row["Content"];
-            //$post->date = $row["Post_date"];
+            $post->date = DateTime::createFromFormat("Y-m-d G:i:s",$row["Post_date"]);
             $post->image = $row["Image"];
             print_r($post);
             $posts[] = $post;
