@@ -39,6 +39,17 @@ class Post {
                 return null;
         }
     }
+    static function CreateFromArr(array $row,User $poster,Post|null $post_replied_to){
+        $post=new Post;
+        $post->post_id = $row["PostID"];
+        $post->poster = $poster;
+        $post->post_replied_to = $post_replied_to;
+        $post->post_type = Post::PostTypeEnumFromString($row["Post_type"]);
+        $post->content = $row["Content"];
+        $post->date = DateTime::createFromFormat("Y-m-d G:i:s",$row["Post_date"]);
+        $post->image = $row["Image"];
+        return $post;
+    }
 }
 class Repost{
     public User $poster; // : User

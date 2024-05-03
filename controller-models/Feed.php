@@ -14,14 +14,7 @@ class UserFeed extends Feed {
         $posts = [];
         while ($row = $result->fetch_assoc()){
             print_r($row);
-            $post = new Post;
-            $post->post_id = $row["PostID"];
-            $post->poster = $this->user;
-            //$post->post_replied_to = $row["Post_replied_to"];
-            $post->post_type = Post::PostTypeEnumFromString($row["Post_type"]);
-            $post->content = $row["Content"];
-            $post->date = DateTime::createFromFormat("Y-m-d G:i:s",$row["Post_date"]);
-            $post->image = $row["Image"];
+            $post = Post::CreateFromArr($row,$this->user,null);
             print_r($post);
             $posts[] = $post;
         }
