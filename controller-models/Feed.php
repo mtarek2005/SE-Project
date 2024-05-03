@@ -9,7 +9,8 @@ abstract class Feed {
 class UserFeed extends Feed {
     public User $user;
     function gatherFeed(mysqli $db){
-        $result = $db->query("SELECT * FROM Post WHERE Poster = ".$this->user->UUID);
+        $result = $db->query("SELECT * FROM Post WHERE Poster = 0");
+        if(!$result){echo "errooor: ".$db -> error."\n";}
         $posts = [];
         while ($row = $result->fetch_assoc()){
             $post = new Post;
@@ -24,7 +25,8 @@ class UserFeed extends Feed {
             var_dump($row);
         }
         $this->posts = $posts;
-        $result = $db->query("SELECT * FROM Reposts WHERE User = ?", $this->user->UUID);
+        $result = $db->query("SELECT * FROM Reposts WHERE User = 0");
+        if(!$result){echo "errooor: ".$db -> error."\n";}
         $reposts = [];
         while ($row = $result->fetch_assoc()){
             $repost = new Repost;
