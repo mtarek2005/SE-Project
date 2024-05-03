@@ -9,7 +9,7 @@ abstract class Feed {
 class UserFeed extends Feed {
     public User $user;
     function gatherFeed(mysqli $db){
-        $result = $db->query("SELECT * FROM Post WHERE Poster = 0");
+        $result = $db->query("SELECT * FROM Post WHERE Poster = 0"); // todo
         if(!$result){echo "errooor: ".$db -> error."\n";}
         $posts = [];
         while ($row = $result->fetch_assoc()){
@@ -19,14 +19,12 @@ class UserFeed extends Feed {
             $posts[] = $post;
         }
         $this->posts = $posts;
-        $result = $db->query("SELECT * FROM Reposts WHERE User = 0");
+        $result = $db->query("SELECT * FROM Reposts WHERE User = 0"); // todo
         if(!$result){echo "errooor: ".$db -> error."\n";}
         $reposts = [];
         while ($row = $result->fetch_assoc()){
-            $repost = new Repost;
-            $repost->post = $row["Post"];
-            $repost->date = $row["Date"];
-            $repost->poster = $row["User"];
+            $repost = Repost::CreateFromArr($row, $this->user, new Post); //todo 
+            
             $reposts[] = $repost;
             var_dump($row);
         }

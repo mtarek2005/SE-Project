@@ -55,6 +55,13 @@ class Repost{
     public User $poster; // : User
     public DateTime $date; // : DateTime
     public Post $post; // : Post
+    static function CreateFromArr(array $row,User $poster,Post $post){
+        $repost = new Repost;
+        $repost->poster = $poster;
+        $repost->post = $post;
+        $repost->date = DateTime::createFromFormat("Y-m-d G:i:s", $row["Date"]);
+        return $repost;
+    }
 }
 class Like{
     public User $user; // : User
