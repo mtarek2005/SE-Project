@@ -15,12 +15,12 @@ class UserFeed extends Feed {
         while ($row = $result->fetch_assoc()){
             $post = new Post;
             $post->post_id = $row["PostID"];
-            $post->poster = $row["Poster"];
-            $post->post_replied_to = $row["Post_replied_to"];
+            $post->poster = $this->user;
+            //$post->post_replied_to = $row["Post_replied_to"];
             $post->post_type = Post::PostTypeEnumFromString($row["Post_type"]);
             $post->content = $row["Content"];
-            $post->date = $row["Post_date"];
-            $post->image = $row["Image"];
+            //$post->date = $row["Post_date"];
+            //$post->image = $row["Image"];
             $posts[] = $post;
             var_dump($row);
         }
