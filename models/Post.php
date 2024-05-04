@@ -66,5 +66,6 @@ class Repost{
 class Like{
     public User $user; // : User
     public DateTime $date; // : DateTime
+    public Post $post; 
 }
 ?>

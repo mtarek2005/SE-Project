@@ -60,6 +60,7 @@ class Bookmark{
 }
 class Follow{
     public User $followed; // : User
+    public User $follower; // : User
     public DateTime $date; // : DateTime
 }
 ?>
