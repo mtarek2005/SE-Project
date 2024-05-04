@@ -8,7 +8,7 @@ abstract class UserList {
 class FollowingList extends UserList {
     public User $user;
     function gatherList(mysqli $db){
-        $stmt = $db->prepare("SELECT * FROM Users JOIN Follows ON Follows.Followed = Users.Poster WHERE Follows.Followed = ?");
+        $stmt = $db->prepare("SELECT * FROM Users JOIN Follows ON Follows.Followed = Users.UUID WHERE Follows.Followed = ?");
         $stmt->bind_param('i', $this->user->UUID);
         $stmt->execute();
         $result = $stmt->get_result();
