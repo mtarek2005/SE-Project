@@ -390,6 +390,7 @@ class BookmarkFeed extends Feed
             echo "errooor: " . $db->error . "\n";
         }
         $posts = [];
+        $bookmarks = [];
         while ($row = $result->fetch_assoc()) {
             print_r($row);
             $post_replied_to = null;
@@ -432,8 +433,13 @@ class BookmarkFeed extends Feed
             $post = Post::CreateFromArr($row, $poster, $post_replied_to);
             print_r($post);
             $posts[] = $post;
+            $bookmark = new Bookmark;
+            $bookmark->post=$post;
+            $bookmark->date=DateTime::createFromFormat("Y-m-d G:i:s", $row["Date"]);
+            $bookmarks[] = $bookmark;
         }
         $this->posts = $posts;
+        $this->bookmarks = $bookmarks;
         $reposts = [];
         $this->reposts = $reposts;
     }    
