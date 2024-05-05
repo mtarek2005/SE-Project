@@ -14,7 +14,7 @@ require_once "./include.php";
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">ℤ</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,10 +35,8 @@ require_once "./include.php";
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Log in</a></li>
                             <li><a class="dropdown-item" href="#">Sign up</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Log out</a></li>
                         </ul>
                     </li>
