@@ -1,34 +1,17 @@
-<!-- Lorem ipsum -->
 <?php
 require_once "./include.php";
-echo "hellooo\n"; 
-
-/* $user = new User;
-$user->UUID = 0;
-$post = new Post; 
-$post->post_id = 1;
-$feed = new ReplyFeed;
-$feed->post = $post;
-$feed->viewer = $user;
-$feed->type = PostTypeEnum::reply;
-//$feed->query = "reply"; 
-$feed->gatherFeed($main_db);
-print_r($feed); */
-$user_1 = new User; 
-$user_2 = new User; 
-$user_1->UUID = 0;
-$user_2->UUID = 1;
-$chat = new Chat; 
-// $chat->to = $user_1;
-// $chat->from = $user_2;
-// $chat->send($main_db, "This is a test message");
-$chat->to = $user_2;
-$chat->from = $user_1;
-// $chat->send($main_db, "This is a test reply to that message");
-$pm = new PMs;
-$pm->message_id = 827757441; 
-$chat->react($main_db, $pm, "💩");
-$chat->gatherFeed($main_db);
-print_r($chat);
-echo "UUID ".$user->UUID;
 ?>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ℤ: The Microblogging App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="scripts/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+  </body>
+</html>
+
