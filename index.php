@@ -60,7 +60,7 @@ require_once "./include.php";
     </nav>
     <h1>Hello, world!</h1>
     <main>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="max-width: 36rem;">
             <div class="card-body">
                 <h5 class="card-title">Tweeter</h5>
                 <p class="card-text" style="opacity:0.75;font-size:75%">@goog</p>
@@ -72,6 +72,22 @@ require_once "./include.php";
             <img src="images/pexels-mikebirdy-170811.jpg" class="card-img-bottom" alt="...">
         </div>
     </main>
+    <footer>
+        <div class="row">
+            <div class="col-3">
+                <a href="#">link</a>
+            </div>
+            <div class="col-3">
+                <a href="#">link</a>
+            </div>
+            <div class="col-3">
+                <a href="#">link</a>
+            </div>
+            <div class="col-3">
+                <a href="#">link</a>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
