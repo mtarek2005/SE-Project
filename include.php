@@ -1,4 +1,5 @@
 <?php
+session_start();
 function dd($dd){}
 require_once "./models/User.php";
 require_once "./models/Post.php";
@@ -9,4 +10,10 @@ require_once "./controller-models/Feed.php";
 require_once "./controller-models/Notifications.php";
 require_once "./controller-models/UserList.php";
 require_once "./views/connect_db.php";
+$main_user=null;
+if(isset($_SESSION["user"])){
+    $main_user=unserialize($_SESSION["user"]);
+}
+$user_manager=new CurrentUserManager;
+$user_manager->user=$main_user;
 ?>

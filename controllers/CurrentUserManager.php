@@ -1,7 +1,7 @@
 <?php
 require_once "./include.php";
 class CurrentUserManager{
-    public $user; // : User
+    public User|null $user; // : User
     function login(mysqli $db,string $username,string $pass){
         $stmt = $db->prepare("SELECT * FROM Users WHERE Username = ? AND Hashed_password = ?");
         $stmt->bind_param('ss', $username, md5($pass));
