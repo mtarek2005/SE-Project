@@ -11,7 +11,7 @@ require_once "./include.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="scripts/jquery-3.7.1.min.js"></script>
     <style>
-        main{
+        main {
             margin-left: auto;
             margin-right: auto;
             max-width: fit-content;
@@ -72,21 +72,27 @@ require_once "./include.php";
             <img src="images/pexels-mikebirdy-170811.jpg" class="card-img-bottom" alt="...">
         </div>
     </main>
-    <footer>
-        <div class="row">
-            <div class="col-3">
-                <a href="#">link</a>
-            </div>
-            <div class="col-3">
-                <a href="#">link</a>
-            </div>
-            <div class="col-3">
-                <a href="#">link</a>
-            </div>
-            <div class="col-3">
-                <a href="#">link</a>
-            </div>
+    <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted">© 2022 ℤ Company, Inc</span>
         </div>
+
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-muted" href="#">
+                    stuff
+                </a></li>
+            <li class="ms-3"><a class="text-muted" href="#">
+                    suff
+                </a></li>
+            <li class="ms-3"><a class="text-muted" href="#">
+                    sutff
+                </a></li>
+        </ul>
     </footer>
 </body>
 
