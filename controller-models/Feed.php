@@ -19,20 +19,20 @@ class UserFeed extends Feed
         $stmt->execute();
         $result = $stmt->get_result();
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $posts = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
+            dd($row);
             $post_replied_to = null;
             if (!is_null($row["Post_replied_to"])) { //todo
-                echo $row["Post_replied_to"];
+                dd($row["Post_replied_to"]);
                 $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
                 $stmt->bind_param('i', $row["Post_replied_to"]);
                 $stmt->execute();
                 $result2 = $stmt->get_result();
                 if (!$result2) {
-                    echo "errooor: " . $db->error . "\n";
+                    dd("errooor: " . $db->error . "\n");
                 }
 
                 if ($irow = $result2->fetch_assoc()) {
@@ -41,7 +41,7 @@ class UserFeed extends Feed
                     $stmt->execute();
                     $result3 = $stmt->get_result();
                     if (!$result3) {
-                        echo "errooor: " . $db->error . "\n";
+                        dd("errooor: " . $db->error . "\n");
                     }
                     $poster = null;
                     if ($row3 = $result3->fetch_assoc()) {
@@ -51,7 +51,7 @@ class UserFeed extends Feed
                 }
             }
             $post = Post::CreateFromArr($row, $this->user, $post_replied_to);
-            print_r($post);
+            dd($post);
             $posts[] = $post;
         }
         $this->posts = $posts;
@@ -60,17 +60,17 @@ class UserFeed extends Feed
         $stmt->execute();
         $result = $stmt->get_result();
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $reposts = [];
         while ($row = $result->fetch_assoc()) {
-            echo $row["Post"];
+            dd($row["Post"]);
             $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
             $stmt->bind_param('i', $row["Post"]);
             $stmt->execute();
             $result2 = $stmt->get_result();
             if (!$result2) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $post_replied_to = null;
             if ($irow = $result2->fetch_assoc()) {
@@ -79,7 +79,7 @@ class UserFeed extends Feed
                 $stmt->execute();
                 $result3 = $stmt->get_result();
                 if (!$result3) {
-                    echo "errooor: " . $db->error . "\n";
+                    dd("errooor: " . $db->error . "\n");
                 }
                 $poster = null;
                 if ($row3 = $result3->fetch_assoc()) {
@@ -90,8 +90,8 @@ class UserFeed extends Feed
             $repost = Repost::CreateFromArr($row, $this->user, $post_replied_to);
 
             $reposts[] = $repost;
-            print_r($row);
-            print_r($repost);
+            dd($row);
+            dd($repost);
         }
         $this->reposts = $reposts;
     }
@@ -106,20 +106,20 @@ class FollowingFeed extends Feed
         $stmt->execute();
         $result = $stmt->get_result();
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $posts = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
+            dd($row);
             $post_replied_to = null;
             if (!is_null($row["Post_replied_to"])) { //todo
-                echo $row["Post_replied_to"];
+                dd($row["Post_replied_to"]);
                 $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
                 $stmt->bind_param('i', $row["Post_replied_to"]);
                 $stmt->execute();
                 $result2 = $stmt->get_result();
                 if (!$result2) {
-                    echo "errooor: " . $db->error . "\n";
+                    dd("errooor: " . $db->error . "\n");
                 }
 
                 if ($irow = $result2->fetch_assoc()) {
@@ -128,7 +128,7 @@ class FollowingFeed extends Feed
                     $stmt->execute();
                     $result3 = $stmt->get_result();
                     if (!$result3) {
-                        echo "errooor: " . $db->error . "\n";
+                        dd("errooor: " . $db->error . "\n");
                     }
                     $poster = null;
                     if ($row3 = $result3->fetch_assoc()) {
@@ -142,14 +142,14 @@ class FollowingFeed extends Feed
             $stmt->execute();
             $result3 = $stmt->get_result();
             if (!$result3) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $poster = null;
             if ($row3 = $result3->fetch_assoc()) {
                 $poster = User::CreateFromArr($row3); // todo
             }
             $post = Post::CreateFromArr($row, $poster, $post_replied_to);
-            print_r($post);
+            dd($post);
             $posts[] = $post;
         }
         $this->posts = $posts;
@@ -158,17 +158,17 @@ class FollowingFeed extends Feed
         $stmt->execute();
         $result = $stmt->get_result();
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $reposts = [];
         while ($row = $result->fetch_assoc()) {
-            echo $row["Post"];
+            dd($row["Post"]);
             $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
             $stmt->bind_param('i', $row["Post"]);
             $stmt->execute();
             $result2 = $stmt->get_result();
             if (!$result2) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $post_replied_to = null;
             if ($irow = $result2->fetch_assoc()) {
@@ -177,7 +177,7 @@ class FollowingFeed extends Feed
                 $stmt->execute();
                 $result3 = $stmt->get_result();
                 if (!$result3) {
-                    echo "errooor: " . $db->error . "\n";
+                    dd("errooor: " . $db->error . "\n");
                 }
                 $poster = null;
                 if ($row3 = $result3->fetch_assoc()) {
@@ -190,7 +190,7 @@ class FollowingFeed extends Feed
             $stmt->execute();
             $result3 = $stmt->get_result();
             if (!$result3) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $poster = null;
             if ($row3 = $result3->fetch_assoc()) {
@@ -198,15 +198,15 @@ class FollowingFeed extends Feed
             }
             $repost = Repost::CreateFromArr($row, $poster, $post_replied_to);
             $reposts[] = $repost;
-            print_r($row);
-            print_r($repost);
+            dd($row);
+            dd($repost);
         }
         $this->reposts = $reposts;
     }
 }
 class ChronoFeed extends Feed
 {
-    public User $viewer;
+    public User|null $viewer;
     function gatherFeed(mysqli $db)
     {
         $stmt = $db->prepare("SELECT * FROM Post WHERE Post_type = 'main' OR Post_type = 'quote' ORDER BY Post_date DESC");
@@ -214,20 +214,20 @@ class ChronoFeed extends Feed
         $stmt->execute();
         $result = $stmt->get_result();
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $posts = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
+            dd($row);
             $post_replied_to = null;
             if (!is_null($row["Post_replied_to"])) { //todo
-                echo $row["Post_replied_to"];
+                dd($row["Post_replied_to"]);
                 $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
                 $stmt->bind_param('i', $row["Post_replied_to"]);
                 $stmt->execute();
                 $result2 = $stmt->get_result();
                 if (!$result2) {
-                    echo "errooor: " . $db->error . "\n";
+                    dd("errooor: " . $db->error . "\n");
                 }
 
                 if ($irow = $result2->fetch_assoc()) {
@@ -236,7 +236,7 @@ class ChronoFeed extends Feed
                     $stmt->execute();
                     $result3 = $stmt->get_result();
                     if (!$result3) {
-                        echo "errooor: " . $db->error . "\n";
+                        dd("errooor: " . $db->error . "\n");
                     }
                     $poster = null;
                     if ($row3 = $result3->fetch_assoc()) {
@@ -250,14 +250,14 @@ class ChronoFeed extends Feed
             $stmt->execute();
             $result3 = $stmt->get_result();
             if (!$result3) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $poster = null;
             if ($row3 = $result3->fetch_assoc()) {
                 $poster = User::CreateFromArr($row3); // todo
             }
             $post = Post::CreateFromArr($row, $poster, $post_replied_to);
-            print_r($post);
+            dd($post);
             $posts[] = $post;
         }
         $this->posts = $posts;
@@ -266,17 +266,17 @@ class ChronoFeed extends Feed
         $stmt->execute();
         $result = $stmt->get_result();
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $reposts = [];
         while ($row = $result->fetch_assoc()) {
-            echo $row["Post"];
+            dd($row["Post"]);
             $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
             $stmt->bind_param('i', $row["Post"]);
             $stmt->execute();
             $result2 = $stmt->get_result();
             if (!$result2) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $post_replied_to = null;
             if ($irow = $result2->fetch_assoc()) {
@@ -285,7 +285,7 @@ class ChronoFeed extends Feed
                 $stmt->execute();
                 $result3 = $stmt->get_result();
                 if (!$result3) {
-                    echo "errooor: " . $db->error . "\n";
+                    dd("errooor: " . $db->error . "\n");
                 }
                 $poster = null;
                 if ($row3 = $result3->fetch_assoc()) {
@@ -298,7 +298,7 @@ class ChronoFeed extends Feed
             $stmt->execute();
             $result3 = $stmt->get_result();
             if (!$result3) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $poster = null;
             if ($row3 = $result3->fetch_assoc()) {
@@ -306,8 +306,8 @@ class ChronoFeed extends Feed
             }
             $repost = Repost::CreateFromArr($row, $poster, $post_replied_to);
             $reposts[] = $repost;
-            print_r($row);
-            print_r($repost);
+            dd($row);
+            dd($repost);
         }
         $this->reposts = $reposts;
     }
@@ -324,20 +324,20 @@ class SearchFeed extends Feed
         $stmt->execute();
         $result = $stmt->get_result();
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $posts = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
+            dd($row);
             $post_replied_to = null;
             if (!is_null($row["Post_replied_to"])) { //todo
-                echo $row["Post_replied_to"];
+                dd($row["Post_replied_to"]);
                 $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
                 $stmt->bind_param('i', $row["Post_replied_to"]);
                 $stmt->execute();
                 $result2 = $stmt->get_result();
                 if (!$result2) {
-                    echo "errooor: " . $db->error . "\n";
+                    dd("errooor: " . $db->error . "\n");
                 }
 
                 if ($irow = $result2->fetch_assoc()) {
@@ -346,7 +346,7 @@ class SearchFeed extends Feed
                     $stmt->execute();
                     $result3 = $stmt->get_result();
                     if (!$result3) {
-                        echo "errooor: " . $db->error . "\n";
+                        dd("errooor: " . $db->error . "\n");
                     }
                     $poster = null;
                     if ($row3 = $result3->fetch_assoc()) {
@@ -360,14 +360,14 @@ class SearchFeed extends Feed
             $stmt->execute();
             $result3 = $stmt->get_result();
             if (!$result3) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $poster = null;
             if ($row3 = $result3->fetch_assoc()) {
                 $poster = User::CreateFromArr($row3); // todo
             }
             $post = Post::CreateFromArr($row, $poster, $post_replied_to);
-            print_r($post);
+            dd($post);
             $posts[] = $post;
         }
         $this->posts = $posts;
@@ -385,23 +385,23 @@ class BookmarkFeed extends Feed
         $stmt->bind_param('i', $this->viewer->UUID);
         $stmt->execute();
         $result = $stmt->get_result();
-        print_r($result);
+        dd($result);
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $posts = [];
         $bookmarks = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
+            dd($row);
             $post_replied_to = null;
             if (!is_null($row["Post_replied_to"])) { //todo
-                echo $row["Post_replied_to"];
+                dd($row["Post_replied_to"]);
                 $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
                 $stmt->bind_param('i', $row["Post_replied_to"]);
                 $stmt->execute();
                 $result2 = $stmt->get_result();
                 if (!$result2) {
-                    echo "errooor: " . $db->error . "\n";
+                    dd("errooor: " . $db->error . "\n");
                 }
 
                 if ($irow = $result2->fetch_assoc()) {
@@ -410,7 +410,7 @@ class BookmarkFeed extends Feed
                     $stmt->execute();
                     $result3 = $stmt->get_result();
                     if (!$result3) {
-                        echo "errooor: " . $db->error . "\n";
+                        dd("errooor: " . $db->error . "\n");
                     }
                     $poster = null;
                     if ($row3 = $result3->fetch_assoc()) {
@@ -424,14 +424,14 @@ class BookmarkFeed extends Feed
             $stmt->execute();
             $result3 = $stmt->get_result();
             if (!$result3) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $poster = null;
             if ($row3 = $result3->fetch_assoc()) {
                 $poster = User::CreateFromArr($row3); // todo
             }
             $post = Post::CreateFromArr($row, $poster, $post_replied_to);
-            print_r($post);
+            dd($post);
             $posts[] = $post;
             $bookmark = new Bookmark;
             $bookmark->post=$post;
@@ -456,31 +456,31 @@ class ReplyFeed extends Feed {
         } else if ($this->type == PostTypeEnum::quote) {
             $stmt = $db->prepare("SELECT * FROM Post WHERE Post_type = 'quote' AND Post_replied_to = ? ORDER BY Post_date DESC");
         } else {
-            echo "Type cannot be 'main'";
+            dd("Type cannot be 'main'");
         }
         $stmt->bind_param('i', $this->post->post_id);
         $stmt->execute();
         $result = $stmt->get_result();
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $posts = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
+            dd($row);
             $post_replied_to = $this->post;
             $stmt = $db->prepare("SELECT * FROM Users WHERE UUID = ?");
             $stmt->bind_param('i', $row["Poster"]);
             $stmt->execute();
             $result3 = $stmt->get_result();
             if (!$result3) {
-                echo "errooor: " . $db->error . "\n";
+                dd("errooor: " . $db->error . "\n");
             }
             $poster = null;
             if ($row3 = $result3->fetch_assoc()) {
                 $poster = User::CreateFromArr($row3); // todo
             }
             $post = Post::CreateFromArr($row, $poster, $post_replied_to);
-            print_r($post);
+            dd($post);
             $posts[] = $post;
         }
         $this->posts = $posts;
@@ -489,7 +489,7 @@ class ReplyFeed extends Feed {
         $stmt->execute();
         $result = $stmt->get_result();
         if (!$result) {
-            echo "errooor: " . $db->error . "\n";
+            dd("errooor: " . $db->error . "\n");
         }
         $reposts = [];
         $this->reposts = $reposts;
