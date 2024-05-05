@@ -14,7 +14,7 @@ require_once "./views/head.php";
     $post->content = "Some quick example text to build on the card title and make up the bulk of the card's content.";
     $post->date = new DateTime();
     $post->image = "images/pexels-mikebirdy-170811.jpg";
-    require_once "./views/post-small.php";
+    require "./views/post-small.php";
     ?>
 </main>
 <?php
