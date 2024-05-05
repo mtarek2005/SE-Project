@@ -62,7 +62,7 @@ require_once "./include.php";
     <main>
         <div class="card" style="max-width: 36rem;">
             <div class="card-body">
-                <h5 class="card-title"><img src="images/pexels-pixabay-45201.jpg" class="rounded-circle" style="object-fit: cover; width: 2rem; height:2rem;" alt="..."> Tweeter</h5>
+                <h5 class="card-title"><img src="images/pexels-pixabay-45201.jpg" class="rounded-circle" style="object-fit: cover; width: 3rem; height:3rem;" alt="..."> Tweeter</h5>
                 <p class="card-text" style="opacity:0.75;font-size:75%">@goog</p>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <button class="btn btn-link card-link">like</button>
