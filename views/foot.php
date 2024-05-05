@@ -10,13 +10,13 @@
 
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3"><a class="text-muted" href="#">
-                stuff
+                Terms of Service
             </a></li>
         <li class="ms-3"><a class="text-muted" href="#">
-                suff
+                Privacy Policy
             </a></li>
         <li class="ms-3"><a class="text-muted" href="#">
-                sutff
+                Cookie Policy
             </a></li>
     </ul>
 </footer>
