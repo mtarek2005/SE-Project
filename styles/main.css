@@ -5,6 +5,7 @@ main {
 }
 .tweet{
     max-width: 36rem;
+    margin: 25px;
 }
 .pfp{
     object-fit: cover; 
