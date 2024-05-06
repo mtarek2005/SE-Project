@@ -35,12 +35,15 @@ require_once "./include.php";
                             Profile
                         </a>
                         <ul class="dropdown-menu">
+                            <?php if (is_null($user_manager->user)): ?>
                             <li><a class="dropdown-item" href="#">Log in</a></li>
                             <li><a class="dropdown-item" href="#">Sign up</a></li>
+                            <?php else: ?>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Bookmarks</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Log out</a></li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                     <!--
