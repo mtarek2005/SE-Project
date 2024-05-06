@@ -32,7 +32,7 @@ require_once "./include.php";
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Profile
+                            <?=(is_null($user_manager->user))?"Log in or Sign up":$user_manager->user->display_name?>
                         </a>
                         <ul class="dropdown-menu">
                             <?php if (is_null($user_manager->user)): ?>
