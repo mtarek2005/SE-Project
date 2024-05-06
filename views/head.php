@@ -29,14 +29,16 @@ require_once "./include.php";
                     <li class="nav-item">
                         <a class="nav-link" href="#">Explore</a>
                     </li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Log in or Sign up or Profile
+                            Profile
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Log in</a></li>
                             <li><a class="dropdown-item" href="#">Sign up</a></li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Bookmarks</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Log out</a></li>
                         </ul>

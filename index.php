@@ -3,7 +3,7 @@ require_once "./views/head.php";
 ?>
 
 <main>
-    <h1>Hello, world!</h1>
+    <h1 class="feed-head">Home</h1>
     <?php
     $feed=new ChronoFeed;
     $feed->viewer=null;
