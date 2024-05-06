@@ -1,11 +1,15 @@
 <?php
 require_once "./views/head.php";
+if (is_null($user_manager->user)){
+    header("Location: index.php");
+
+}
 ?>
 
 <main>
-    <h1 class="feed-head">Home</h1>
+    <h1 class="feed-head">Explore</h1>
     <?php
-    $feed = (is_null($user_manager->user)) ? new ChronoFeed : new FollowingFeed; 
+    $feed = new ChronoFeed;
     $feed->viewer=$user_manager->user;
     $feed->gatherFeed($main_db);
     foreach ($feed->posts as $i => $post) {

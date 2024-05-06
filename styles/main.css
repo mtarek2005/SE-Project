@@ -43,3 +43,9 @@ main {
 .cmnt-icon:hover{
     color: aqua;
 }
+.pfp-big{
+    object-fit: cover; 
+    width: 6rem; 
+    height:6rem;
+    border-radius: 50%;
+}

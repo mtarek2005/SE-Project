@@ -25,10 +25,10 @@ require_once "./include.php";
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Explore</a>
+                        <a class="nav-link" href="explore.php">Explore</a>
                     </li>
                     
                     <li class="nav-item dropdown">
@@ -40,8 +40,9 @@ require_once "./include.php";
                             <li><a class="dropdown-item" href="login.php">Log in</a></li>
                             <li><a class="dropdown-item" href="signup.php">Sign up</a></li>
                             <?php else: ?>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Bookmarks</a></li>
+                            <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                            <li><a class="dropdown-item" href="bookmarks.php">Bookmarks</a></li>
+                            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="logout.php">Log out</a></li>
                             <?php endif; ?>
@@ -53,9 +54,9 @@ require_once "./include.php";
                     </li>
                     -->
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form class="d-flex" role="search" action="search.php" method="get">
+                    <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit"><i class="nf nf-fa-search"></i></button>
                 </form>
             </div>
         </div>

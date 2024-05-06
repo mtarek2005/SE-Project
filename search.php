@@ -1,12 +1,18 @@
 <?php
 require_once "./views/head.php";
+if (!isset($_GET["query"])){
+    header("Location: index.php");
+
+}
+$query = $_GET["query"];
 ?>
 
 <main>
-    <h1 class="feed-head">Home</h1>
+    <h1 class="feed-head">Search: <?= $query?></h1>
     <?php
-    $feed = (is_null($user_manager->user)) ? new ChronoFeed : new FollowingFeed; 
+    $feed = new SearchFeed;
     $feed->viewer=$user_manager->user;
+    $feed->query = $query;
     $feed->gatherFeed($main_db);
     foreach ($feed->posts as $i => $post) {
         switch($post->post_type){
@@ -16,7 +22,13 @@ require_once "./views/head.php";
             case PostTypeEnum::quote:
                 require "./views/quote-small.php";
                 break;
+            case PostTypeEnum::reply:
+                require "./views/quote-small.php";
+                break;
         }
+    }
+    if (count($feed->posts) == 0){
+        echo "This search yielded no results.";
     }
     ?>
 </main>
