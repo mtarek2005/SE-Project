@@ -37,6 +37,21 @@ class CurrentUserManager{
             return $this->login($db, $username, $pass);
         }
     } // : void SELECT
+    function check_username(mysqli $db,string $username){
+        $stmt = $db->prepare("SELECT * FROM Users WHERE Username = ?");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if (!$result) {
+            echo "errooor: " . $db->error . "\n";
+            return false;
+        }
+        if ($row = $result->fetch_assoc()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     function follow(mysqli $db, User $user){
         $stmt = $db->prepare("INSERT INTO Follows (Followed, Follower) VALUES (?, ?)");
         $stmt->bind_param('ii', $user->UUID, $this->user->UUID);
