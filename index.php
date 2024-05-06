@@ -9,7 +9,14 @@ require_once "./views/head.php";
     $feed->viewer=null;
     $feed->gatherFeed($main_db);
     foreach ($feed->posts as $i => $post) {
-        require "./views/post-small.php";
+        switch($post->post_type){
+            case PostTypeEnum::main:
+                require "./views/post-small.php";
+                break;
+            case PostTypeEnum::quote:
+                require "./views/quote-small.php";
+                break;
+        }
     }
     ?>
 </main>

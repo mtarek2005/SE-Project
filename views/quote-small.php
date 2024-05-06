@@ -1,0 +1,25 @@
+<div class="card tweet">
+    <div class="card-body">
+        <h5 class="card-title"><img src="<?= $post->poster->profile_pic ?>" class="rounded-circle pfp" alt="..."> <?= $post->poster->display_name ?></h5>
+        <p class="card-text tweet-username">@<?= $post->poster->username ?></p>
+        <p class="card-text"><?= $post->content ?></p>
+        <div class="card tweet">
+            <div class="card-body">
+                <h5 class="card-title"><img src="<?= $post->post_replied_to->poster->profile_pic ?>" class="rounded-circle pfp" alt="..."> <?= $post->post_replied_to->poster->display_name ?></h5>
+                <p class="card-text tweet-username">@<?= $post->post_replied_to->poster->username ?></p>
+                <p class="card-text"><?= $post->post_replied_to->content ?></p>
+            </div>
+            <?php if (!is_null($post->post_replied_to->image)) : ?>
+                <img src="<?= $post->post_replied_to->image ?>" class="card-img-bottom" alt="...">
+            <?php endif; ?>
+        </div>
+        <p class="card-text tweet-date"><?= date("F j, Y, g:i a", $post->date->getTimestamp()) ?></p>
+        <button class="btn btn-link card-link">like</button>
+        <button class="btn btn-link card-link">repost</button>
+        <button class="btn btn-link card-link">bkmrk</button>
+        <a href="#" class="card-link">comment</a>
+    </div>
+    <?php if (!is_null($post->image)) : ?>
+        <img src="<?= $post->image ?>" class="card-img-bottom" alt="...">
+    <?php endif; ?>
+</div>

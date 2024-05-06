@@ -6,6 +6,7 @@
         <p class="card-text tweet-date"><?=date("F j, Y, g:i a",$post->date->getTimestamp())?></p>
         <button class="btn btn-link card-link">like</button>
         <button class="btn btn-link card-link">repost</button>
+        <button class="btn btn-link card-link">bkmrk</button>
         <a href="#" class="card-link">comment</a>
     </div>
     <?php if (!is_null($post->image)): ?>
