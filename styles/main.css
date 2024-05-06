@@ -31,3 +31,15 @@ main {
     margin-right: auto;
     max-width: fit-content;
 }
+.like-icon:hover{
+    color: palevioletred;
+}
+.rtwt-icon:hover{
+    color: green;
+}
+.bkmrk-icon:hover{
+    color: lightblue;
+}
+.cmnt-icon:hover{
+    color: aqua;
+}
