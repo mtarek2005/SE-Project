@@ -5,34 +5,34 @@ if (!isset($_GET["id"])){
 }
 $post_id = intval($_GET["id"]);
 $target_post = null;
-$stmt = $main_db->prepare("SELECT * FROM Users WHERE Username = ?");
-$stmt->bind_param('s', $username);
+$stmt = $main_db->prepare("SELECT * FROM Post WHERE PostID = ?");
+$stmt->bind_param('i', $post_id);
 $stmt->execute();
 $result = $stmt->get_result();
 if (!$result) {
     echo "errooor: " . $main_db->error . "\n";
-
+    
 }
 if ($row = $result->fetch_assoc()) {
     dd($row);
     $post_replied_to = null;
     if (!is_null($row["Post_replied_to"])) { //todo
         dd($row["Post_replied_to"]);
-        $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
+        $stmt = $main_db->prepare("SELECT * FROM Post WHERE PostID = ?");
         $stmt->bind_param('i', $row["Post_replied_to"]);
         $stmt->execute();
         $result2 = $stmt->get_result();
         if (!$result2) {
-            dd("errooor: " . $db->error . "\n");
+            dd("errooor: " . $main_db->error . "\n");
         }
 
         if ($irow = $result2->fetch_assoc()) {
-            $stmt = $db->prepare("SELECT * FROM Users WHERE UUID = ?");
+            $stmt = $main_db->prepare("SELECT * FROM Users WHERE UUID = ?");
             $stmt->bind_param('i', $irow["Poster"]);
             $stmt->execute();
             $result3 = $stmt->get_result();
             if (!$result3) {
-                dd("errooor: " . $db->error . "\n");
+                dd("errooor: " . $main_db->error . "\n");
             }
             $poster = null;
             if ($row3 = $result3->fetch_assoc()) {
@@ -41,12 +41,12 @@ if ($row = $result->fetch_assoc()) {
             $post_replied_to = Post::CreateFromArr($irow, $poster, null); // todo
         }
     }
-    $stmt = $db->prepare("SELECT * FROM Users WHERE UUID = ?");
+    $stmt = $main_db->prepare("SELECT * FROM Users WHERE UUID = ?");
     $stmt->bind_param('i', $row["Poster"]);
     $stmt->execute();
     $result3 = $stmt->get_result();
     if (!$result3) {
-        dd("errooor: " . $db->error . "\n");
+        dd("errooor: " . $main_db->error . "\n");
     }
     $poster = null;
     if ($row3 = $result3->fetch_assoc()) {
