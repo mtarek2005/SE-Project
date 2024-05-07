@@ -7,6 +7,7 @@ main {
 .tweet{
     max-width: 36rem;
     margin: 25px;
+    width: 90vw;
 }
 .reply-tweet{
     max-width: 38rem;
