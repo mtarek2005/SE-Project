@@ -21,7 +21,7 @@ if (is_null($user_manager->user)){
                 require "./views/quote-small.php";
                 break;
             case PostTypeEnum::reply:
-                require "./views/quote-small.php";
+                require "./views/reply-small.php";
                 break;
         }
     }

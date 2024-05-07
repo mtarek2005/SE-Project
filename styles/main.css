@@ -8,6 +8,10 @@ main {
     max-width: 36rem;
     margin: 25px;
 }
+.reply-tweet{
+    max-width: 38rem;
+    margin-top: 25px;
+}
 .pfp{
     object-fit: cover; 
     width: 3rem; 

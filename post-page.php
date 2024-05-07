@@ -73,7 +73,7 @@ if ($row = $result->fetch_assoc()) {
             require "./views/quote-small.php";
             break;
         case PostTypeEnum::reply:
-            require "./views/quote-small.php";
+            require "./views/reply-small.php";
             break;
     }
 
@@ -84,12 +84,12 @@ if ($row = $result->fetch_assoc()) {
     $feed->gatherFeed($main_db);
     foreach ($feed->posts as $i => $post) {
         switch($post->post_type){
-            case PostTypeEnum::main:
+            case PostTypeEnum::reply:
                 require "./views/post-small.php";
                 break;
-            case PostTypeEnum::quote:
-                require "./views/quote-small.php";
-                break;
+            // case PostTypeEnum::quote:
+            //     require "./views/quote-small.php";
+            //     break;
         }
     }
     ?>

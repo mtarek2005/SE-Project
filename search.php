@@ -23,7 +23,7 @@ $query = $_GET["query"];
                 require "./views/quote-small.php";
                 break;
             case PostTypeEnum::reply:
-                require "./views/quote-small.php";
+                require "./views/reply-small.php";
                 break;
         }
     }
