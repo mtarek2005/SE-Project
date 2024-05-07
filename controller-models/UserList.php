@@ -17,9 +17,7 @@ class FollowingList extends UserList {
         }
         $users = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
             $user = User::CreateFromArr($row);
-            print_r($user);
             $users[] = $user;
         }
         $this->users = $users;
@@ -28,6 +26,7 @@ class FollowingList extends UserList {
 }
 class FollowerList extends UserList {
     public User $user;
+    public array $followers;
     function gatherList(mysqli $db){
         $stmt = $db->prepare("SELECT * FROM Users JOIN Follows ON Follows.Follower = Users.UUID WHERE Follows.Followed = ? ");
         $stmt->bind_param('i', $this->user->UUID);
@@ -37,13 +36,18 @@ class FollowerList extends UserList {
             echo "errooor: " . $db->error . "\n";
         }
         $users = [];
+        $followers = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
             $user = User::CreateFromArr($row);
-            print_r($user);
+            $follower = new Follow;
+            $follower->followed = $this->user;
+            $follower->follower = $user;
+            $follower->date = DateTime::createFromFormat("Y-m-d G:i:s",$row["Date"]);
             $users[] = $user;
+            $followers[] = $follower;
         }
         $this->users = $users;
+        $this->followers = $followers;
         
     }
 }

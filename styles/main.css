@@ -9,14 +9,20 @@ main {
     margin: 25px;
     width: 90vw;
 }
+.quote-tweet{
+    max-width: calc(36rem - 2rem - 32px);
+    margin: 25px auto;
+    width: 90vw;
+}
 .reply-tweet{
     max-width: 38rem;
     margin-top: 25px;
 }
+
 .pfp{
     object-fit: cover; 
-    width: 3rem; 
-    height:3rem;
+    width: 3em; 
+    height:3em;
     border-radius: 50%;
 }
 .navbar-brand{
@@ -42,15 +48,30 @@ main {
 .rtwt-icon:hover{
     color: green;
 }
+.post-icon:hover{
+    color: lightblue;
+}
 .bkmrk-icon:hover{
     color: lightblue;
 }
 .cmnt-icon:hover{
     color: aqua;
 }
+.follow-icon:hover{
+    color:lime;
+}
+.unfollow-icon:hover{
+    color:red;
+}
 .pfp-big{
     object-fit: cover; 
     width: 6rem; 
     height:6rem;
     border-radius: 50%;
+}
+textarea {
+    width:100%;
+}
+.reposter-info {
+    font-size: 85%;
 }

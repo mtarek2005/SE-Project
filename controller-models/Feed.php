@@ -445,7 +445,7 @@ class BookmarkFeed extends Feed
     }    
 }
 class ReplyFeed extends Feed {
-    public User $viewer;
+    public User|null $viewer;
     public Post $post;
     public PostTypeEnum $type;
     function gatherFeed(mysqli $db)

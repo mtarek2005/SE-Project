@@ -76,21 +76,24 @@ if ($row = $result->fetch_assoc()) {
             require "./views/reply-small.php";
             break;
     }
-
+    $new_post_type = "reply";
+    require "./views/new-post.php";
     $feed = new ReplyFeed;
     $feed->viewer=$user_manager->user;
     $feed->post=$target_post;
     $feed->type= PostTypeEnum::reply;
     $feed->gatherFeed($main_db);
     foreach ($feed->posts as $i => $post) {
-        switch($post->post_type){
-            case PostTypeEnum::reply:
-                require "./views/post-small.php";
-                break;
-            // case PostTypeEnum::quote:
-            //     require "./views/quote-small.php";
-            //     break;
-        }
+        require "./views/post-small.php";
+
+        // switch($post->post_type){
+        //     case PostTypeEnum::reply:
+        //         require "./views/post-small.php";
+        //         break;
+        //     // case PostTypeEnum::quote:
+        //     //     require "./views/quote-small.php";
+        //     //     break;
+        // }
     }
     ?>
 </main>
