@@ -11,6 +11,13 @@ require_once "./views/head.php";
     $feed->viewer=$user_manager->user;
     $feed->gatherFeed($main_db);
     $posts = array_merge($feed->posts, $feed->reposts);
+    if(!is_null($user_manager->user)){
+        $ufeed = new UserFeed; 
+        $ufeed->user=$user_manager->user;
+        $ufeed->gatherFeed($main_db);
+        $uposts = array_merge($ufeed->posts, $ufeed->reposts);
+        $posts = array_merge($posts, $uposts);
+    }
     usort($posts, "cmp_post_repost");
 
     foreach ($posts as $i => $post) {
@@ -22,7 +29,6 @@ require_once "./views/head.php";
                 case PostTypeEnum::quote:
                     require "./views/quote-small.php";
                     break;
-            
             }
         } else {
             require "./views/repost-small.php";

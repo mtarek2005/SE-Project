@@ -17,14 +17,12 @@ class Notifications {
         }
         $likes = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
             $user = User::CreateFromArr($row);
             $post = Post::CreateFromArr($row, $this->user, null);
             $like = new Like;
             $like->post = $post;
             $like->user = $user;
             $like->date = DateTime::createFromFormat("Y-m-d G:i:s", $row["Date"]);
-            print_r($like);
             $likes[] = $like;
         }
         $this->likes = $likes;
@@ -38,11 +36,9 @@ class Notifications {
         }
         $reposts = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
             $user = User::CreateFromArr($row);
             $post = Post::CreateFromArr($row, $this->user, null);
             $repost = Repost::CreateFromArr($row, $user, $post);
-            print_r($repost);
             $reposts[] = $repost;
         }
         $this->reposts = $reposts;
@@ -56,13 +52,11 @@ class Notifications {
         }
         $follows = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
             $user = User::CreateFromArr($row);
             $follow = new Follow;
             $follow->followed = $this->user;
             $follow->follower = $user;
             $follow->date = DateTime::createFromFormat("Y-m-d G:i:s", $row["Date"]);
-            print_r($follow);
             $follows[] = $follow;
         }
         $this->follows = $follows;
@@ -76,8 +70,32 @@ class Notifications {
         }
         $posts = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
-            $post_replied_to = new Post;
+            $post_replied_to = null;
+            if (!is_null($row["Post_replied_to"])) { //todo
+                dd($row["Post_replied_to"]);
+                $stmt = $db->prepare("SELECT * FROM Post WHERE PostID = ?");
+                $stmt->bind_param('i', $row["Post_replied_to"]);
+                $stmt->execute();
+                $result2 = $stmt->get_result();
+                if (!$result2) {
+                    dd("errooor: " . $db->error . "\n");
+                }
+
+                if ($irow = $result2->fetch_assoc()) {
+                    $stmt = $db->prepare("SELECT * FROM Users WHERE UUID = ?");
+                    $stmt->bind_param('i', $irow["Poster"]);
+                    $stmt->execute();
+                    $result3 = $stmt->get_result();
+                    if (!$result3) {
+                        dd("errooor: " . $db->error . "\n");
+                    }
+                    $poster = null;
+                    if ($row3 = $result3->fetch_assoc()) {
+                        $poster = User::CreateFromArr($row3); // todo
+                    }
+                    $post_replied_to = Post::CreateFromArr($irow, $poster, null); // todo
+                }
+            }
             $stmt = $db->prepare("SELECT * FROM Users WHERE UUID = ?");
             $stmt->bind_param('i', $row["Poster"]);
             $stmt->execute();
@@ -90,7 +108,6 @@ class Notifications {
                 $poster = User::CreateFromArr($row3); // todo
             }
             $post = Post::CreateFromArr($row, $poster, $post_replied_to);
-            print_r($post);
             $posts[] = $post;
         }
         $this->replies = $posts;

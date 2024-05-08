@@ -10,7 +10,7 @@ require_once "./controller-models/Feed.php";
 require_once "./controller-models/Notifications.php";
 require_once "./controller-models/UserList.php";
 require_once "./views/connect_db.php";
-function cmp_post_repost(Post|Repost $a, Post|Repost $b) {
+function cmp_post_repost(Post|Repost|Like|Follow $a, Post|Repost|Like|Follow $b) {
     return -($a->date <=> $b->date);
 }
 $main_user=null;

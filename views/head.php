@@ -1,8 +1,8 @@
 <?php
 require_once "./include.php";
 ?>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,6 +44,7 @@ require_once "./include.php";
                             <?php else: ?>
                             <li><a class="dropdown-item" href="userpage.php?username=<?= $user_manager->user->username  ?>">Profile</a></li>
                             <li><a class="dropdown-item" href="bookmarks.php">Bookmarks</a></li>
+                            <li><a class="dropdown-item" href="notifications.php">Notifications</a></li>
                             <li><a class="dropdown-item" href="#">Edit Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="logout.php">Log out</a></li>
