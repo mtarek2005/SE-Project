@@ -23,14 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <main>
   <form class="login2" method="POST" action="<?= $_SERVER['PHP_SELF'] ?>">
     <div class="row mb-3">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
-      <div class="col-sm-10">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Username</label>
+      <div class="col-sm-9">
         <input type="text" class="form-control" name="username" id="inputEmail3">
       </div>
     </div>
     <div class="row mb-3">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
+      <label for="inputPassword3" class="col-sm-3 col-form-label">Password</label>
+      <div class="col-sm-9">
         <input type="password" class="form-control" name="password" id="inputPassword3">
       </div>
     </div>

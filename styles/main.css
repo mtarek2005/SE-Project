@@ -75,3 +75,6 @@ textarea {
 .reposter-info {
     font-size: 85%;
 }
+.delete-icon:hover{
+    color:red;
+}

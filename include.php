@@ -18,5 +18,11 @@ if(isset($_SESSION["user"])){
     $main_user=unserialize($_SESSION["user"]);
 }
 $user_manager=new CurrentUserManager;
+$mod_manager = new CurrentModManager;
+$mod_manager->user = null;
+if ($main_user->role == RoleEnum::moderator) {
+    $user_manager = new CurrentModManager;
+    $mod_manager->user = $main_user;
+}
 $user_manager->user=$main_user;
 ?>

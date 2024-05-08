@@ -63,9 +63,7 @@ class LikesList extends UserList {
         }
         $users = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
             $user = User::CreateFromArr($row);
-            print_r($user);
             $users[] = $user;
         }
         $this->users = $users;
@@ -117,9 +115,7 @@ class SearchUserList extends UserList {
         }
         $users = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
             $user = User::CreateFromArr($row);
-            print_r($user);
             $users[] = $user;
         }
         $this->users = $users;
@@ -139,9 +135,7 @@ class RepostsList extends UserList {
         }
         $users = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
             $user = User::CreateFromArr($row);
-            print_r($user);
             $users[] = $user;
         }
         $this->users = $users;

@@ -15,6 +15,18 @@ class CurrentUserManager
         }
         if ($row = $result->fetch_assoc()) {
             $this->user = User::CreateFromArr($row);
+            if (!is_null($this->user->ban_duration)) {
+                if ($this->user->ban_duration > new DateTime()) {
+                    echo "<main><h2>Banned until: ".date("F j, Y, g:i a", $this->user->ban_duration->getTimestamp())."</h2></main>";
+                    $this->user=null;
+                    return false;
+                } else {
+                    $stmt = $db->prepare("UPDATE Users SET Ban_to = null WHERE UUID = ?");
+                    $stmt->bind_param('i', $this->user->UUID);
+                    $stmt->execute();
+                    $this->user->ban_duration = null;
+                }
+            }
             $_SESSION["user"] = serialize($this->user);
             return true;
         } else {
@@ -85,12 +97,18 @@ class CurrentUserManager
         $stmt = $db->prepare("UPDATE Users SET Display_name = ? WHERE UUID = ?");
         $stmt->bind_param('si', $name, $this->user->UUID);
         $stmt->execute();
+        
+        $this->user->display_name = $name;
+        $_SESSION["user"] = serialize($this->user);
     } // : void NO SELECT
     function update_about(mysqli $db, string $about)
     {
         $stmt = $db->prepare("UPDATE Users SET About = ? WHERE UUID = ?");
         $stmt->bind_param('si', $about, $this->user->UUID);
         $stmt->execute();
+        $this->user->about = $about;
+        $_SESSION["user"] = serialize($this->user);
+
     } // : void NO SELECT
     function update_username(mysqli $db, string $username)
     {
@@ -107,14 +125,23 @@ class CurrentUserManager
         } else {
             $stmt = $db->prepare("UPDATE Users SET Username = ? WHERE UUID = ?");
             $stmt->bind_param('si', $username, $this->user->UUID);
-            return $stmt->execute();
+            if ($stmt->execute()) {
+                $this->user->username = $username;
+                $_SESSION["user"] = serialize($this->user);
+                return true;
+            } else {return false;}
         }
+        
     } // : void SELECT
     function update_pic(mysqli $db, string $pic)
     {
         $stmt = $db->prepare("UPDATE Users SET Profile_pic = ? WHERE UUID = ?");
         $stmt->bind_param('si', $pic, $this->user->UUID);
         $stmt->execute();
+        $this->user->profile_pic = $pic;
+        $_SESSION["user"] = serialize($this->user);
+
+
     } // : void NO SELECT
     function like(mysqli $db, Post $post)
     {
@@ -160,16 +187,16 @@ class CurrentUserManager
     } // : void NO SELECT
     function delete_post(mysqli $db, Post $post)
     {
-        $stmt = $db->prepare("DELETE FROM Posts WHERE PostID = ? AND Poster = ?");
+        $stmt = $db->prepare("DELETE FROM Post WHERE PostID = ? AND Poster = ?");
         $stmt->bind_param('ii', $post->post_id, $this->user->UUID);
         $stmt->execute();
     } // : void NO SELECT
-    function edit_post(mysqli $db, Post $post)
-    {
-        $stmt = $db->prepare("UPDATE Posts SET Content = ?, Image = ?, Date = current_timestamp() WHERE PostID = ? AND Poster = ?");
-        $stmt->bind_param('sii', $post->content, $post->image, $post->post_id, $this->user->UUID);
-        $stmt->execute();
-    } // : void NO SELECT
+    // function edit_post(mysqli $db, Post $post)
+    // {
+    //     $stmt = $db->prepare("UPDATE Post SET Content = ?, Image = ?, Date = current_timestamp() WHERE PostID = ? AND Poster = ?");
+    //     $stmt->bind_param('sii', $post->content, $post->image, $post->post_id, $this->user->UUID);
+    //     $stmt->execute();
+    // } // : void NO SELECT
     function logout()
     {
         unset($_SESSION["user"]);
@@ -196,18 +223,18 @@ class CurrentModManager extends CurrentUserManager
     function global_mute(mysqli $db, $user)
     {
         $stmt = $db->prepare("UPDATE Users SET Mute_to = ? WHERE UUID = ?");
-        $stmt->bind_param('ii', date("Y-m-d G:i:s", time() + 3 * 24 * 3600), $user->UUID);
+        $stmt->bind_param('si', date("Y-m-d G:i:s", time() + 3 * 24 * 3600), $user->UUID);
         $stmt->execute();
     } // : void 
     function ban(mysqli $db, $user)
     {
         $stmt = $db->prepare("UPDATE Users SET Ban_to = ? WHERE UUID = ?");
-        $stmt->bind_param('ii', date("Y-m-d G:i:s", time() + 7 * 24 * 3600), $user->UUID);
+        $stmt->bind_param('si', date("Y-m-d G:i:s", time() + 7 * 24 * 3600), $user->UUID);
         $stmt->execute();
     } // : void
     function delete_post(mysqli $db, $post)
     {
-        $stmt = $db->prepare("DELETE FROM Posts WHERE PostID = ?");
+        $stmt = $db->prepare("DELETE FROM Post WHERE PostID = ?");
         $stmt->bind_param('i', $post->post_id);
         $stmt->execute();
     } // : void

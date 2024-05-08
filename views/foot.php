@@ -29,7 +29,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="repost_empty(retweet_id)" data-bs-dismiss="modal">Repost</button>
-        <a href="" class="btn btn-primary">Quote Repost</a>
+        <button type="button" class="btn btn-primary" onclick="quote_repost(retweet_id)" data-bs-dismiss="modal">Quote Repost</button>
       </div>
     </div>
   </div>

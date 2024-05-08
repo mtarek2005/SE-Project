@@ -35,7 +35,7 @@ require_once "./include.php";
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?=(is_null($user_manager->user))?"Log in or Sign up":$user_manager->user->display_name?>
+                            <?=(is_null($user_manager->user))?"Log in or Sign up":($user_manager->user->display_name.(($user_manager->user->role == RoleEnum::moderator) ? " (Mod)" : ""))?>
                         </a>
                         <ul class="dropdown-menu">
                             <?php if (is_null($user_manager->user)): ?>
@@ -45,7 +45,7 @@ require_once "./include.php";
                             <li><a class="dropdown-item" href="userpage.php?username=<?= $user_manager->user->username  ?>">Profile</a></li>
                             <li><a class="dropdown-item" href="bookmarks.php">Bookmarks</a></li>
                             <li><a class="dropdown-item" href="notifications.php">Notifications</a></li>
-                            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="edit-profile.php">Edit Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="logout.php">Log out</a></li>
                             <?php endif; ?>

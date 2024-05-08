@@ -1,15 +1,32 @@
 <?php
 require_once "./views/head.php";
 
-echo "echo 1";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-echo "echo 2";
     $content = $_POST['post-text'];
     $type = $_POST['type'];
     $img = $_FILES['post-img']['name'];
 
-    echo "echo 3";
+    if (!is_null($user_manager->user->mute_duration)) {
+        if ($user_manager->user->mute_duration > new DateTime()) {
+            echo "<main><h2>Muted until: ".date("F j, Y, g:i a", $user_manager->user->mute_duration->getTimestamp())."</h2></main>";
+            $content = null;
+            return false;
+        } else {
+            echo "before prepare";
+            $stmt = $main_db->prepare("UPDATE Users SET Mute_to = NULL WHERE UUID = ?");
+            echo "before bind";
 
+            $stmt->bind_param('i', $user_manager->user->UUID);
+            echo "before exec";
+
+            $stmt->execute();
+            echo "after exec";
+
+            $user_manager->user->mute_duration = null;
+        }
+    }
+    echo "echooooo 2";
+    echo $content;
     if (!empty($content)) {
         echo "echo 4";
         $upload_flag = false;
@@ -17,7 +34,7 @@ echo "echo 2";
         if (!empty($img)) {
             echo "echo 5";
             $target_dir = "uploads/";
-            $target_file = $target_dir . basename($_FILES["post-img"]["name"]);
+            $target_file = $target_dir .random_int(0, 65535). basename($_FILES["post-img"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 

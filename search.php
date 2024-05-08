@@ -9,6 +9,7 @@ $query = $_GET["query"];
 
 <main>
     <h1 class="feed-head">Search: <?= $query?></h1>
+    <h4 class="feed-head">Posts <a href="search-user.php?query=<?=$query?>">Users</a></h4>
     <?php
     $feed = new SearchFeed;
     $feed->viewer=$user_manager->user;
@@ -28,7 +29,7 @@ $query = $_GET["query"];
         }
     }
     if (count($feed->posts) == 0){
-        echo "This search yielded no results.";
+        echo "<h6 class=\"feed-head\">This search yielded no results.</h6>";
     }
     ?>
 </main>
