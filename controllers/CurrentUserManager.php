@@ -191,12 +191,12 @@ class CurrentUserManager
         $stmt->bind_param('ii', $post->post_id, $this->user->UUID);
         $stmt->execute();
     } // : void NO SELECT
-    // function edit_post(mysqli $db, Post $post)
-    // {
-    //     $stmt = $db->prepare("UPDATE Post SET Content = ?, Image = ?, Date = current_timestamp() WHERE PostID = ? AND Poster = ?");
-    //     $stmt->bind_param('sii', $post->content, $post->image, $post->post_id, $this->user->UUID);
-    //     $stmt->execute();
-    // } // : void NO SELECT
+    function edit_post(mysqli $db, Post $post)
+    {
+        $stmt = $db->prepare("UPDATE Post SET Content = ?, Image = ?, Date = current_timestamp() WHERE PostID = ? AND Poster = ?");
+        $stmt->bind_param('sii', $post->content, $post->image, $post->post_id, $this->user->UUID);
+        $stmt->execute();
+    } // : void NO SELECT
     function logout()
     {
         unset($_SESSION["user"]);

@@ -5,9 +5,6 @@ abstract class Feed
     public array $posts; // Post[]
     public array $reposts; // Repost[]
     abstract function gatherFeed(mysqli $db);
-    function getPost(mysqli $db, $index)
-    {
-    }
 }
 class UserFeed extends Feed
 {

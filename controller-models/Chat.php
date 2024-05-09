@@ -14,9 +14,11 @@ class Chat {
         }
         $messages = [];
         while ($row = $result->fetch_assoc()) {
-            print_r($row);
-            $message = PMs::CreateFromArr($row, $this->from, $this->to);
-            print_r($message);
+            if($row['From_user']==$this->from->UUID){
+                $message = PMs::CreateFromArr($row, $this->from, $this->to);
+            } else {
+                $message = PMs::CreateFromArr($row, $this->to, $this->from);
+            }
             $messages[] = $message;
         }
         $this->messages = $messages;

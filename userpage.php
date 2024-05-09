@@ -40,6 +40,7 @@ if ($target_user->UUID == $user_manager->user->UUID) {
     <?php else : ?>
         <h4 class="feed-head"><a href="edit-profile.php">Edit Profile</a></h4>
     <?php endif; ?>
+    <h4 class="feed-head"><a href="chatpage.php?id=<?= $target_user->UUID ?>">Message</a></h4>
     <?php
     $feed = new UserFeed;
     $feed->user = $target_user;

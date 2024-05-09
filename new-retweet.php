@@ -4,7 +4,7 @@ require_once "./include.php";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $content = $_POST['id'];
 
-    if (!empty($content)) {
+    if (is_numeric($content)) {
         $upload_post = new Post;
         $upload_post->post_id = $content;
         $user_manager->repost($main_db, $upload_post);

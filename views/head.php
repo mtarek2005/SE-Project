@@ -44,6 +44,7 @@ require_once "./include.php";
                             <?php else: ?>
                             <li><a class="dropdown-item" href="userpage.php?username=<?= $user_manager->user->username  ?>">Profile</a></li>
                             <li><a class="dropdown-item" href="bookmarks.php">Bookmarks</a></li>
+                            <li><a class="dropdown-item" href="chats-list.php">Messages</a></li>
                             <li><a class="dropdown-item" href="notifications.php">Notifications</a></li>
                             <li><a class="dropdown-item" href="edit-profile.php">Edit Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
