@@ -1,6 +1,6 @@
 <?php
 require_once "./views/head.php";
-if (!is_numeric($_GET["id"])) {
+if (!is_numeric($_GET["id"])||is_null($user_manager->user)) {
     header("Location: index.php");
 }
 $id = intval($_GET["id"]);
